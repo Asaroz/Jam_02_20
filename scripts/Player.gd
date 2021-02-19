@@ -1,9 +1,7 @@
 extends KinematicBody2D
 
 const GRAVITY = -100
-const MAX_SPEED = 2000
 const MOVE_SPEED = 400
-const FRICTION_GROUND = 0.85
 const JUMP_FORCE = 1500
 
 var direction=0
@@ -22,7 +20,7 @@ func _input(event):
 		jump=true
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	if move_mode ==1:
 		velocity.x =MOVE_SPEED
@@ -34,7 +32,12 @@ func _physics_process(delta):
 	if jump == true:
 		velocity.y-=JUMP_FORCE
 		jump=false
-		print("heya")
-	
-	print(velocity.y)
 	velocity=move_and_slide(velocity,Vector2.UP)
+
+
+func _on_Hurtbox_area_entered(area):
+	if area.is_in_group("flag"):
+		
+		var world_lvl= str(int(get_tree().current_scene.name)+1)
+		print(world_lvl)
+		get_tree().change_scene("res://scenes/world_" + str(int(get_tree().current_scene.name)+1)+".tscn")
