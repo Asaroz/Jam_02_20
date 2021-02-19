@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://tiles/TileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Flag.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Fire.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Timer.tscn" type="PackedScene" id=5]
 
 [node name="world_1" type="Node2D"]
@@ -17,5 +18,8 @@ tile_data = PoolIntArray( -786433, 0, 3, -851946, 0, 3, -720897, 0, 65539, -7864
 position = Vector2( 682.713, 0.104614 )
 
 [node name="Timer" parent="." instance=ExtResource( 5 )]
+
+[node name="Fire" parent="." instance=ExtResource( 4 )]
+position = Vector2( 529.52, 144.128 )
 
 [editable path="Player"]

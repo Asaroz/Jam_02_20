@@ -30,16 +30,19 @@ func _physics_process(_delta):
 	else:
 		velocity.x =-MOVE_SPEED
 		
-	velocity.y -= GRAVITY
-	
-	
-
-	
 	if jump == true:
 		velocity.y-=JUMP_FORCE
 		jump=false
+		
+	velocity.y -= GRAVITY
+	var stop=0
+	stop = Input.get_action_strength("stop")
+	
+	if stop==1:
+		velocity.x=0
+		move_mode=move_mode*-1
 	velocity=move_and_slide(velocity,Vector2.UP)
-
+	
 
 func _on_Hurtbox_area_entered(area):
 	if area.is_in_group("flag"):
