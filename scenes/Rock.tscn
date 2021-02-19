@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://sprites/rock.png" type="Texture" id=1]
+[ext_resource path="res://boxes/Hitbox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://boxes/Hitbox_enemy.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 12.852
+
+[node name="Rock" type="RigidBody2D"]
+
+[node name="Hitbox" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+
+[editable path="Hitbox"]

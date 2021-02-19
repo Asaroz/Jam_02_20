@@ -21,13 +21,19 @@ func _input(event):
 
 
 func _physics_process(_delta):
+
 	
+	if velocity.x==0:
+		move_mode=move_mode*-1
 	if move_mode ==1:
 		velocity.x =MOVE_SPEED
 	else:
 		velocity.x =-MOVE_SPEED
 		
 	velocity.y -= GRAVITY
+	
+	
+
 	
 	if jump == true:
 		velocity.y-=JUMP_FORCE
@@ -37,7 +43,6 @@ func _physics_process(_delta):
 
 func _on_Hurtbox_area_entered(area):
 	if area.is_in_group("flag"):
-		
-		var world_lvl= str(int(get_tree().current_scene.name)+1)
-		print(world_lvl)
-		get_tree().change_scene("res://scenes/world_" + str(int(get_tree().current_scene.name)+1)+".tscn")
+		get_tree().change_scene("res://worlds/world_" + str(int(get_tree().current_scene.name)+1)+".tscn")
+	if area.is_in_group("enemy"):
+		get_tree().reload_current_scene()
