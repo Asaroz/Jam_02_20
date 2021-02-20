@@ -8,6 +8,9 @@ var direction=0
 var velocity= Vector2.ZERO
 var move_mode =1
 var jump=false
+var button_check = true
+
+
 
 func _ready():
 	pass # Replace with function body.
@@ -18,6 +21,8 @@ func _input(event):
 		move_mode= move_mode*-1
 	if event.is_action_pressed("jump") and is_on_floor():
 		jump=true
+	if event.is_action_pressed("pause"):
+		get_tree().paused = false
 
 
 func _physics_process(_delta):
@@ -35,12 +40,7 @@ func _physics_process(_delta):
 		jump=false
 		
 	velocity.y -= GRAVITY
-	var stop=0
-	stop = Input.get_action_strength("stop")
 	
-	if stop==1:
-		velocity.x=0
-		move_mode=move_mode*-1
 	velocity=move_and_slide(velocity,Vector2.UP)
 	
 
@@ -49,3 +49,8 @@ func _on_Hurtbox_area_entered(area):
 		get_tree().change_scene("res://worlds/world_" + str(int(get_tree().current_scene.name)+1)+".tscn")
 	if area.is_in_group("enemy"):
 		get_tree().reload_current_scene()
+	if area.is_in_group("button"):
+		if button_check:
+			get_parent().get_node("Gate-Button").get_node("Gate").get_node("Hitbox").queue_free()
+			get_parent().get_node("Gate-Button").get_node("Gate").get_node("ani_sprite").queue_free()
+			button_check=false

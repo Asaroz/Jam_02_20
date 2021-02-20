@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://tiles/TileMap.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Flag.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
+
+[node name="world9" type="Node2D"]
+
+[node name="Flag" parent="." instance=ExtResource( 2 )]
+position = Vector2( 144, 547.481 )
+
+[node name="TileMap" parent="." instance=ExtResource( 1 )]
+tile_data = PoolIntArray( 655360, 0, 0, 655361, 0, 65537, 655362, 0, 131074, 655363, 0, 65537, 655364, 0, 131073, 655365, 0, 131073, 655366, 0, 131074, 655367, 0, 65538, 655368, 0, 131074, 655369, 0, 65538, 655370, 0, 0, 720896, 0, 131075, 720906, 0, 131075, 786432, 0, 131075, 786442, 0, 131075, 851968, 0, 131075, 851978, 0, 131075, 917504, 0, 131075, 917514, 0, 131075, 983040, 0, 131075, 983050, 0, 131075, 1048576, 0, 131075, 1048586, 0, 131075, 1114112, 0, 131075, 1114122, 0, 131075, 1179648, 0, 0, 1179649, 0, 1, 1179650, 0, 131073, 1179651, 0, 131073, 1179652, 0, 65538, 1179653, 0, 131073, 1179654, 0, 131073, 1179655, 0, 1, 1179656, 0, 65537, 1179657, 0, 1, 1179658, 0, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 53.6367, 545.981 )
