@@ -21,12 +21,14 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("change"):
 		move_mode= move_mode*-1
-	if event.is_action_pressed("pause"):
-		get_tree().paused = false
+	if event.is_action_pressed("restart"):
+		get_tree().reload_current_scene()
+		if get_parent().name=="world_1":
+			Singleton.timer = 0
 
 
 func _physics_process(_delta):
-	
+
 	if is_on_floor():
 		if jumpwasPressed:
 			velocity.y-=JUMP_FORCE
@@ -40,7 +42,6 @@ func _physics_process(_delta):
 			if  Input.is_action_just_pressed("jump"):
 				jumpwasPressed=true
 				rememberJumptime()
-	print(jumpwasPressed)
 	
 	if velocity.x==0 and is_on_floor():
 		move_mode=move_mode*-1
@@ -53,13 +54,20 @@ func _physics_process(_delta):
 
 	
 	velocity=move_and_slide(velocity,Vector2.UP)
-
+	find_node("UI").find_node("Label").rect_position.x = global_position.x+400
+	find_node("UI").find_node("Label").rect_position.y = global_position.y-280
+	find_node("UI").find_node("Label").text= "Death:  "+ str(Singleton.playerdeath)
+	find_node("UI").find_node("Time").rect_position.x = global_position.x+400
+	find_node("UI").find_node("Time").rect_position.y = global_position.y-260
+	find_node("UI").find_node("Time").text= "Time:  "+ str(Singleton.timer)
+	
 	
 
 func _on_Hurtbox_area_entered(area):
 	if area.is_in_group("flag"):
 		get_tree().change_scene("res://worlds/world_" + str(int(get_tree().current_scene.name)+1)+".tscn")
 	if area.is_in_group("enemy"):
+		Singleton.playerdeath = Singleton.playerdeath +1
 		get_tree().reload_current_scene()
 	if area.is_in_group("button"):
 		if button_check:
