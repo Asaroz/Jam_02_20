@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://sounds/yt1s.com - Undertale Megalovania (online-audio-converter.com).wav" type="AudioStream" id=1]
+[ext_resource path="res://scripts/Sounds.gd" type="Script" id=2]
+[ext_resource path="res://sounds/sound.wav" type="AudioStream" id=3]
+[ext_resource path="res://sounds/flag.wav" type="AudioStream" id=4]
+[ext_resource path="res://sounds/jump.wav" type="AudioStream" id=5]
+[ext_resource path="res://sounds/button.wav" type="AudioStream" id=6]
+
+[node name="Sounds" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Background" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -33.326
+autoplay = true
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="Flag" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -14.135
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -25.253
+
+[node name="Button" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -14.136
+[connection signal="finished" from="Background" to="." method="_on_Background_finished"]

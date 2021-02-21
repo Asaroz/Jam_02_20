@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://sprites/saw.png" type="Texture" id=1]
+[ext_resource path="res://boxes/Hitbox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://boxes/Hitbox_enemy.gd" type="Script" id=3]
+[ext_resource path="res://scripts/Saw.gd" type="Script" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 7.70781
+
+[node name="saw" type="Sprite"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+script = ExtResource( 4 )
+
+[node name="Hitbox" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 1 )
+
+[editable path="Hitbox"]

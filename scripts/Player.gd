@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 const GRAVITY = -50
 const MOVE_SPEED = 250
-const JUMP_FORCE = 800
+const JUMP_FORCE = 900
 
 var jumpwasPressed = false
 var coyote_time = true
@@ -14,29 +14,42 @@ var button_check = true
 
 
 
-func _ready():
-	pass # Replace with function body.
+
 
 
 func _input(event):
 	if event.is_action_pressed("change"):
 		move_mode= move_mode*-1
+
 	if event.is_action_pressed("restart"):
 		get_tree().reload_current_scene()
 		if get_parent().name=="world_1":
 			Singleton.timer = 0
+			Singleton.playerdeath=0
 
 
 func _physics_process(_delta):
-
+	if move_mode == 1:
+		$Sprite.flip_h = false
+	else:
+		$Sprite.flip_h= true
+	
+	
 	if is_on_floor():
 		if jumpwasPressed:
+			Sounds.jump_play()
 			velocity.y-=JUMP_FORCE
 		else:
 			if Input.is_action_just_pressed("jump"):
 				velocity.y-=JUMP_FORCE
+				Sounds.jump_play()
 		coyote_time =true
 		
+	
+	if Input.is_action_just_released("jump") and velocity.y < 0:
+		velocity.y = 0;
+	
+	
 	if is_on_floor()==false:
 			coyotetime()
 			if  Input.is_action_just_pressed("jump"):
@@ -50,10 +63,10 @@ func _physics_process(_delta):
 	else:
 		velocity.x =-MOVE_SPEED
 	velocity.y -= GRAVITY
-
-
-	
 	velocity=move_and_slide(velocity,Vector2.UP)
+	
+	
+	
 	find_node("UI").find_node("Label").rect_position.x = global_position.x+400
 	find_node("UI").find_node("Label").rect_position.y = global_position.y-280
 	find_node("UI").find_node("Label").text= "Death:  "+ str(Singleton.playerdeath)
@@ -65,12 +78,16 @@ func _physics_process(_delta):
 
 func _on_Hurtbox_area_entered(area):
 	if area.is_in_group("flag"):
+		Sounds.flag_play()
 		get_tree().change_scene("res://worlds/world_" + str(int(get_tree().current_scene.name)+1)+".tscn")
 	if area.is_in_group("enemy"):
+		Sounds.hit_play()
 		Singleton.playerdeath = Singleton.playerdeath +1
 		get_tree().reload_current_scene()
 	if area.is_in_group("button"):
+		
 		if button_check:
+			Sounds.Button_play()
 			get_parent().get_node("Gate-Button").get_node("Gate").get_node("Hitbox").queue_free()
 			get_parent().get_node("Gate-Button").get_node("Gate").get_node("ani_sprite").queue_free()
 			button_check=false
@@ -80,6 +97,6 @@ func coyotetime():
 	coyote_time = false
 
 func rememberJumptime():
-	yield(get_tree().create_timer(0.2),"timeout")
+	yield(get_tree().create_timer(0.1),"timeout")
 	jumpwasPressed = false
 	

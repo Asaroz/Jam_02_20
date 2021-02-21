@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/Flag.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
 
-[node name="world2" type="Node2D"]
+[node name="world_" type="Node2D"]
 
 [node name="Flag" parent="." instance=ExtResource( 2 )]
 position = Vector2( 144, 547.481 )
@@ -13,3 +13,5 @@ position = Vector2( 144, 547.481 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 53.6367, 545.981 )
+
+[node name="Saws" type="Node" parent="."]
