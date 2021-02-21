@@ -11,7 +11,6 @@
 
 [node name="MovingPlatform" parent="." instance=ExtResource( 4 )]
 position = Vector2( 464, 432 )
-scale = Vector2( 2.5, 2 )
 trigger = 1
 
 [node name="moveto" parent="MovingPlatform" index="2"]

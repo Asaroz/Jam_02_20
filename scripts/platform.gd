@@ -26,8 +26,7 @@ func _on_Hitbox_area_entered(area):
 	if trigger==1 and area.is_in_group("Player") and istriggered==0:
 		istriggered=1
 		_init_tween()
-	if move_to.y <0:
-		get_parent().get_node("Player").velocity.y = (get_parent().get_node("Player").velocity.y)*2
+
 
 
 

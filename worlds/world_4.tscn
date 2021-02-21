@@ -33,6 +33,9 @@ position = Vector2( 3.05176e-05, -280 )
 [node name="Gate" parent="Gate-Button" index="0"]
 position = Vector2( 816, 960 )
 
+[node name="ani_sprite" parent="Gate-Button/Gate" index="1"]
+frame = 2
+
 [node name="Button" parent="Gate-Button" index="1"]
 position = Vector2( 656, 416 )
 

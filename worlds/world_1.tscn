@@ -152,7 +152,7 @@ position = Vector2( 56, 368 )
 position = Vector2( 152, 352 )
 
 [node name="Sprite" parent="Player" index="0"]
-frame = 1
+frame = 2
 
 [node name="TileMap" parent="." instance=ExtResource( 1 )]
 tile_set = SubResource( 12 )

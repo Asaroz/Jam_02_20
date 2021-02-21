@@ -49,6 +49,8 @@ func _physics_process(_delta):
 	if Input.is_action_just_released("jump") and velocity.y < 0:
 		velocity.y = 0;
 	
+	if Input.is_action_just_pressed("mute"):
+		Sounds.sound_mute()
 	
 	if is_on_floor()==false:
 			coyotetime()

@@ -17,3 +17,6 @@ func Button_play():
 
 func _on_Background_finished():
 	$Background.play()
+
+func sound_mute():
+	$Background.volume_db = -80
