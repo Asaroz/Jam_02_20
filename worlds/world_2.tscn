@@ -7,7 +7,7 @@
 [ext_resource path="res://scenes/Spawntimer.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/platform.tscn" type="PackedScene" id=6]
 
-[node name="world2" type="Node2D"]
+[node name="world_2" type="Node2D"]
 
 [node name="MovingPlatform" parent="." instance=ExtResource( 6 )]
 position = Vector2( 928, 368 )
@@ -37,6 +37,9 @@ tile_data = PoolIntArray( 196607, 0, 0, 131072, 0, 65538, 131073, 0, 131073, 131
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( -416, 544 )
+
+[node name="Sprite" parent="Player" index="0"]
+frame = 3
 
 [node name="saws" type="Node" parent="."]
 

@@ -51,7 +51,7 @@ script = ExtResource( 3 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 2, 2 )
 frames = SubResource( 5 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -165,6 +165,20 @@ margin_right = -993.996
 margin_bottom = -21.2778
 __meta__ = {
 "_edit_use_anchors_": true
+}
+
+[node name="World" type="Label" parent="UI"]
+margin_right = 40.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="UI"]
+margin_right = 40.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="Playtime" type="Timer" parent="."]

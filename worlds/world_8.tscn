@@ -8,7 +8,7 @@
 [ext_resource path="res://scenes/Saw.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/Gate-Button.tscn" type="PackedScene" id=7]
 
-[node name="world_" type="Node2D"]
+[node name="world_8" type="Node2D"]
 
 [node name="Gate-Button" parent="." instance=ExtResource( 7 )]
 
@@ -16,9 +16,6 @@
 position = Vector2( -1360, 736 )
 rotation = 3.14159
 scale = Vector2( 2, 4 )
-
-[node name="ani_sprite" parent="Gate-Button/Gate" index="1"]
-frame = 2
 
 [node name="Button" parent="Gate-Button" index="1"]
 position = Vector2( -1912, 240 )

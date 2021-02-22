@@ -11,21 +11,26 @@ var velocity= Vector2.ZERO
 var move_mode = 1
 var jump=false
 var button_check = true
+var stop = 0
 
 
 
-
+func _ready():
+	if get_tree().current_scene.name == "world_9":
+		find_node("UI").find_node("World").visible = false
+		find_node("UI").find_node("Time").text= "Time:  "+ str(Singleton.timer)
 
 
 func _input(event):
 	if event.is_action_pressed("change"):
-		move_mode= move_mode*-1
-
+		move_mode= move_mode *-1
 	if event.is_action_pressed("restart"):
 		get_tree().reload_current_scene()
 		if get_parent().name=="world_1":
 			Singleton.timer = 0
 			Singleton.playerdeath=0
+
+	
 
 
 func _physics_process(_delta):
@@ -33,6 +38,8 @@ func _physics_process(_delta):
 		$Sprite.flip_h = false
 	else:
 		$Sprite.flip_h= true
+	
+	
 	
 	
 	if is_on_floor():
@@ -58,30 +65,39 @@ func _physics_process(_delta):
 				jumpwasPressed=true
 				rememberJumptime()
 	
-	if velocity.x==0 and is_on_floor():
+	if velocity.x==0 and is_on_floor() and stop==0:
 		move_mode=move_mode*-1
 	if move_mode ==1:
 		velocity.x =MOVE_SPEED
 	else:
 		velocity.x =-MOVE_SPEED
+		
+	
+
+	
+	
 	velocity.y -= GRAVITY
 	velocity=move_and_slide(velocity,Vector2.UP)
 	
-	
-	
+	if get_tree().current_scene.name != "world_9":
+		find_node("UI").find_node("Time").text= "Time:  "+ str(Singleton.timer)
 	find_node("UI").find_node("Label").rect_position.x = global_position.x+400
 	find_node("UI").find_node("Label").rect_position.y = global_position.y-280
 	find_node("UI").find_node("Label").text= "Death:  "+ str(Singleton.playerdeath)
 	find_node("UI").find_node("Time").rect_position.x = global_position.x+400
 	find_node("UI").find_node("Time").rect_position.y = global_position.y-260
-	find_node("UI").find_node("Time").text= "Time:  "+ str(Singleton.timer)
+	find_node("UI").find_node("World").rect_position.x = global_position.x+400
+	find_node("UI").find_node("World").rect_position.y = global_position.y-240
+	find_node("UI").find_node("World").text= "World:  "+ str(int(get_tree().current_scene.name)) + "/8"
 	
 	
-
 func _on_Hurtbox_area_entered(area):
 	if area.is_in_group("flag"):
 		Sounds.flag_play()
-		get_tree().change_scene("res://worlds/world_" + str(int(get_tree().current_scene.name)+1)+".tscn")
+		if get_tree().current_scene.name == "world_9":
+			get_tree().change_scene("res://worlds/world_1.tscn")
+		else:
+			get_tree().change_scene("res://worlds/world_" + str(int(get_tree().current_scene.name)+1)+".tscn")
 	if area.is_in_group("enemy"):
 		Sounds.hit_play()
 		Singleton.playerdeath = Singleton.playerdeath +1

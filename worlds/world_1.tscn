@@ -145,6 +145,9 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 [node name="Gate" parent="Gate-Button" index="0"]
 position = Vector2( 784, 352 )
 
+[node name="ani_sprite" parent="Gate-Button/Gate" index="1"]
+frame = 0
+
 [node name="Button" parent="Gate-Button" index="1"]
 position = Vector2( 56, 368 )
 
@@ -152,7 +155,7 @@ position = Vector2( 56, 368 )
 position = Vector2( 152, 352 )
 
 [node name="Sprite" parent="Player" index="0"]
-frame = 2
+frame = 3
 
 [node name="TileMap" parent="." instance=ExtResource( 1 )]
 tile_set = SubResource( 12 )

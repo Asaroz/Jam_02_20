@@ -48,6 +48,7 @@ shape = SubResource( 1 )
 
 [node name="ani_sprite" type="AnimatedSprite" parent="Gate"]
 frames = SubResource( 5 )
+frame = 2
 playing = true
 
 [node name="sprite" type="Sprite" parent="Gate"]
